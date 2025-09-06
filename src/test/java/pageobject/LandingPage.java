@@ -62,7 +62,7 @@ public class LandingPage {
 		System.out.println("inside when");
 
 		// driver.findElement(By.name("usernamse")).click();
-		Thread.sleep(5000);
+		Thread.sleep(6000);
 		driver.findElement(By.name("emailField")).sendKeys(props.getProperty("loginid"));
 		Thread.sleep(2000);
 		driver.findElement(By.name("passField")).sendKeys(props.getProperty("userpassword"));

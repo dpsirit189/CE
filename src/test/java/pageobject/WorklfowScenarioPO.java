@@ -96,21 +96,27 @@ public class WorklfowScenarioPO extends LandingPage{
 		//get text 
 		String st1=driver.findElement(By.xpath("(//p[contains(text(),'Total Workflows')])[1]")).getText();
 		System.out.println(st1.substring(0, 2));
+		
+		m.takePageScreenshot_onPass(driver, "Contract Renewal count");
 		Thread.sleep(2000);
 		
 		String st2=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[3]/p/div/span")).getText();
-		System.out.println(st2.substring(0, 2));
+		ExtentCucumberAdapter.addTestStepLog(st1.substring(0, 2));
+		ExtentCucumberAdapter.addTestStepLog(st2.substring(0, 2));
 		//assertEquals(st2.substring(0, 2),st1.substring(0, 2)); nee to chanfe to out of
 		//procurement
 		driver.findElement(By.xpath("//p[text()='Procurement']")).click();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("(//p[contains(text(),'Total Workflows')])[2]")));
 		//get text 
 		String st3=driver.findElement(By.xpath("(//p[contains(text(),'Total Workflows')])[2]")).getText();
-		System.out.println(st3.substring(0, 2));
+		
+		m.takePageScreenshot_onPass(driver, "Procurement count");
 		Thread.sleep(2000);
 		
 		String st4=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[3]/p/div/span")).getText();
-		System.out.println(st4.substring(0, 2));
+		ExtentCucumberAdapter.addTestStepLog(st3.substring(0, 2));
+		ExtentCucumberAdapter.addTestStepLog(st4.substring(0, 2));
+		
 		//assertEquals(st4.substring(0, 2),st3.substring(0, 2));
 		//app access
 		driver.findElement(By.xpath("//p[text()='Application Access']")).click();
@@ -118,6 +124,7 @@ public class WorklfowScenarioPO extends LandingPage{
 		//get text 
 		String st5=driver.findElement(By.xpath("//p[text()='Application Access']/following::p[1]")).getText();
 		st5=st5.substring(0);
+		m.takePageScreenshot_onPass(driver, "Application Access count");
 		st5=st5.trim();
 		System.out.println(st5);
 		Thread.sleep(2000);
@@ -126,6 +133,8 @@ public class WorklfowScenarioPO extends LandingPage{
 		st6=st6.substring(0,2);
 		st6=st6.trim();
 		//System.out.println(st6.substring(0, 2));
+		ExtentCucumberAdapter.addTestStepLog(st5);
+		ExtentCucumberAdapter.addTestStepLog(st6);
 		//assertEquals(st6,st5);
 		//prov
 		driver.findElement(By.xpath("//p[text()='Provisioning / Deprovisioning']")).click();
@@ -134,12 +143,15 @@ public class WorklfowScenarioPO extends LandingPage{
 		String st7=driver.findElement(By.xpath("//p[text()='Provisioning / Deprovisioning']/following::p[1]")).getText();
 		st7=st7.substring(0);
 		st7=st7.trim();
+		m.takePageScreenshot_onPass(driver, "Provisioning count");
 		Thread.sleep(2000);
 		
 		String st8=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[3]/p/div/span")).getText();
 		//System.out.println(st8.substring(0, 2));
 		st8=st8.substring(0,2);
 		st8=st8.trim();
+		ExtentCucumberAdapter.addTestStepLog(st7);
+		ExtentCucumberAdapter.addTestStepLog(st8);
 	//	assertEquals(st8,st7);
 		//others
 		driver.findElement(By.xpath("//p[text()='Others']")).click();
@@ -153,6 +165,9 @@ public class WorklfowScenarioPO extends LandingPage{
 		String st10=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[3]/p/div/span")).getText();
 		st10=st10.substring(0,2);
 		st10=st10.trim();
+		m.takePageScreenshot_onPass(driver, "others count");
+		ExtentCucumberAdapter.addTestStepLog(st9);
+		ExtentCucumberAdapter.addTestStepLog(st10);
 	//	assertEquals(st10,st9);
 		Thread.sleep(3000);	
 		driver.navigate().refresh();
@@ -349,17 +364,18 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 		
 			driver.findElement(By.xpath("(//*[text()='"+workflow+"'])[1]")).click();
 			Thread.sleep(2000);
-		
+			 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Due Date:']/following::div[1]")));
 			driver.findElement(By.xpath("//*[text()='Due Date:']/following::div[1]")).click();
-			Thread.sleep(2000);
+			
 			//div[text()='30']
-			driver.findElement(By.xpath("//div[text()='30']")).click();
+		//	 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='30']")));
+		//	driver.findElement(By.xpath("//div[text()='30']")).click();
 			//driver.findElement(By.xpath("//*[text()='Today']")).click();
 			Thread.sleep(5000);
 		//	 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//p[text()='Mark Complete'])[1]")));
 		
 				try {
-					for(int i=1;i<5;i++)
+					for(int i=1;i<7;i++)
 					{
 						//WebElement element = driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]"));
 						Thread.sleep(1000); 
@@ -377,13 +393,36 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 					driver.findElement(By.xpath("//button[text()='Confirm']")).click();
 					Thread.sleep(6000);
 					m.takePageScreenshot_onPass(driver, "wk markcomplete pic"+i);
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 				
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println("button over");
 				}
-			
+				Thread.sleep(3000);
+				 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//textarea[@id='mentions_input']")));
+				try {
+					driver.findElement(By.xpath("//textarea[@id='mentions_input']")).click();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					
+				}
+				//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//p[text()='Workflow Activities']/following::textarea[@id='mentions_input']")));
+				//driver.findElement(By.xpath("//textarea[@id='mentions_input']")).sendKeys("workflow automation comment @Digvijay"+Keys.ENTER);
+				driver.findElement(By.xpath("//textarea[@id='mentions_input']")).sendKeys("workflow automation comment @Digvijay"+Keys.ENTER);
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//input[@type='file']")).sendKeys("C:\\cloud eagle recording\\count check.png");
+				Thread.sleep(4000);
+				 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button/h7[text()='Send']")));
+				try {
+					driver.findElement(By.xpath("//button/h7[text()='Send']")).click();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					
+				}
+				//p[text()='Workflow Activities']/following::textarea[@id='mentions_input']
+				//span[starts-with(@class, 'workflowSettings')]
+				//input[@type='file']
 	}
 	}

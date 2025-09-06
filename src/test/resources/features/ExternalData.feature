@@ -2,23 +2,37 @@
 
 Feature: External Data
 
-@smoke
-Scenario Outline: External Data Vender Detected
+#@smoke
+#Scenario Outline: External Data Vender Detected confirm
+#Given user is Login page prior to confirming vendor
+#When user navigate to External Data Vender Detected and New Vendor
+#Then user confirm new vendor <vendor name>
+
+#Examples:
+#|vendor name  	|
+#|"Nudge Experience LLC" |
+
+Scenario Outline: External Data Vender Detected Reject and Revert
 Given user is Login page prior to confirming vendor
 When user navigate to External Data Vender Detected and New Vendor
-Then user confirm new vendor <vendor name>
-
+Then user reject new vendor <vendor name>
+Then user revert the rejected vendor <vendor name>
 Examples:
 |vendor name  	|
 |"Nudge Experience LLC" |
 
+Scenario: External Data Vender Detected Reject multiple vendor and Revert
+Given user is Login page prior to confirming vendor
+When user navigate to External Data Vender Detected and New Vendor
+Then user reject multiple vendors and revert
 
-@smoke
-Scenario Outline: External Data Application Detected
-Given user is Login page prior to confirming Application
-When user navigate to External Data Application Detected and New Application
-Then user confirm new Application <App name>
 
-Examples:
-|App name  	  |
-|"Connectors" |
+#@smoke
+#Scenario Outline: External Data Application Detected
+#Given user is Login page prior to confirming Application
+#When user navigate to External Data Application Detected and New Application
+#Then user confirm new Application <App name>
+
+#Examples:
+#|App name  	  |
+#|"Connectors" |

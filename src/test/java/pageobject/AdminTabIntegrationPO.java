@@ -165,16 +165,29 @@ public class AdminTabIntegrationPO extends LandingPage{
 		act.build().perform();
 		act.sendKeys(Keys.ARROW_RIGHT);
 		act.build().perform();
+		act.sendKeys(Keys.ARROW_RIGHT);
+		act.build().perform();
 		Thread.sleep(2000);	
 		
 		driver.findElement(By.xpath("//span[text()='Security']")).click();
 		m.takePageScreenshot_onPass(driver, "security tab");
 		boolean sec=anybuttonpresent();
-		
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//span[text()='SAM']")));
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text()='SAM']"))));
 		driver.findElement(By.xpath("//span[text()='SAM']")).click();
 		m.takePageScreenshot_onPass(driver, "SAM tab");
 		boolean sam=anybuttonpresent();
+		Thread.sleep(1000);	
+		act.sendKeys(Keys.ARROW_RIGHT);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_RIGHT);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_RIGHT);
+		act.build().perform();
+		Thread.sleep(2000);	
 		
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text()='Settings']"))));
 		driver.findElement(By.xpath("//span[text()='Settings']")).click();
 		m.takePageScreenshot_onPass(driver, "Settings tab");
 		Thread.sleep(1000);	
@@ -218,7 +231,7 @@ public class AdminTabIntegrationPO extends LandingPage{
 				 driver.switchTo().window((String) windowHandles1[0]); 
 				 Thread.sleep(1000);
 				m.takePageScreenshot_onPass(driver, "zoom connected for dsp");
-				Thread.sleep(1000);
+				Thread.sleep(5000);
 				driver.findElement(By.xpath("//button[text()='Sync Now']/following::div[1]")).click();
 				Thread.sleep(5000);
 				
@@ -262,6 +275,7 @@ public class AdminTabIntegrationPO extends LandingPage{
 		driver.findElement(By.xpath("//button/h7[text()='Connect']")).click();
 		Thread.sleep(5000);
 		m.takePageScreenshot_onPass(driver, "uservoice after connect pic2");
+		Thread.sleep(5000);
 		 wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//button[text()='Sync Now'])[1]"))));
 		 driver.findElement(By.xpath("(//button[text()='Sync Now'])[1]")).click();
 			Thread.sleep(4000);

@@ -48,6 +48,22 @@ public ExternalVendorDetected() throws IOException {
 	{
 		vendordetectedconfirm(vendor);
 }
+	@Then("user reject new vendor {string}")
+	public void rejecvendor(String vendor) throws InterruptedException
+	{
+		singlevendor_reject(vendor);
+}
+	@Then("user revert the rejected vendor {string}")
+	public void revertrejecvendor(String vendor) throws InterruptedException
+	{
+		rejected_vendor_revert(vendor);
+}
+	
+		@Then("user reject multiple vendors and revert")
+		public void revertrejecmultiplevendor() throws InterruptedException
+		{
+			rejected_multiplevendor_revert();
+	}
 	// app
 	@Given("user is Login page prior to confirming Application") 
 	public void mygivenlogin_app() throws Throwable 

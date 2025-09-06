@@ -14,6 +14,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+
 public class ExternalData extends LandingPage{
 	
 	public ExternalData() throws IOException {
@@ -137,6 +139,126 @@ public class ExternalData extends LandingPage{
 		Thread.sleep(1000);
 		driver.close();
 		
+	}
+	public void singlevendor_reject(String vendor) throws InterruptedException
+	{
+		Actions ac=new Actions(driver);
+		WebDriverWait wt=new WebDriverWait(driver,Duration.ofSeconds(40));
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='appBodyContainer']/div[1]/div[2]/button")).click();
+			Thread.sleep(2000);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			System.out.println("no side button");
+		}
+		driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(vendor);
+		Thread.sleep(9000);
+		int f=0;
+		try {
+			driver.findElement(By.xpath("//span[text()='Vendor']/preceding::input[1]")).click();
+			Thread.sleep(2000);
+			f=1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
+		if(f==0)
+		{
+				driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
+				Thread.sleep(2000);
+		}
+				driver.findElement(By.xpath("//button[text()='Reject Vendors']")).click();
+				Thread.sleep(2000);
+				
+		Thread.sleep(5000);
+		m.takePageScreenshot_onPass(driver, vendor+"rejected pic1");
+	Thread.sleep(2000);
+		driver.findElement(By.xpath("//div[contains(text(),'Rejected Vendors')]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(vendor);
+		Thread.sleep(9000);	
+		m.takePageScreenshot_onPass(driver, vendor+"rejected pic2");
+		Thread.sleep(2000);
+		
+		
+	}
+	public void rejected_vendor_revert(String vendor) throws InterruptedException
+	{
+		
+		driver.navigate().refresh();
+		WebDriverWait wt=new WebDriverWait(driver,Duration.ofSeconds(40));
+		wt.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Rejected Vendors')]")));
+		driver.findElement(By.xpath("//div[contains(text(),'Rejected Vendors')]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(vendor);
+		Thread.sleep(9000);	
+		driver.findElement(By.xpath("//button[text()='Revert Vendor']")).click();
+		Thread.sleep(5000);
+		m.takePageScreenshot_onPass(driver, vendor+"reject revert pic1");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(vendor);
+		Thread.sleep(9000);
+		m.takePageScreenshot_onPass(driver, vendor+"reject revert pic2");
+		Thread.sleep(2000);
+		driver.close();
+	}
+	public void rejected_multiplevendor_revert() throws InterruptedException
+	{
+		Actions ac=new Actions(driver);
+		WebDriverWait wt=new WebDriverWait(driver,Duration.ofSeconds(40));
+		
+		try {
+			driver.findElement(By.xpath("//*[@id='appBodyContainer']/div[1]/div[2]/button")).click();
+			Thread.sleep(2000);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			System.out.println("no side button");
+		}
+		driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
+		Thread.sleep(2000);
+		
+	driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+	driver.findElement(By.xpath("(//input[@type='checkbox'])[3]")).click();
+	driver.findElement(By.xpath("(//input[@type='checkbox'])[4]")).click();
+				// -gettext
+						
+		String v1=driver.findElement(By.xpath("(//input[@type='checkbox'])[2]/following::div[1]")).getText();
+		String v2=driver.findElement(By.xpath("(//input[@type='checkbox'])[3]/following::div[1]")).getText();
+		String v3=driver.findElement(By.xpath("(//input[@type='checkbox'])[4]/following::div[1]")).getText();
+		ExtentCucumberAdapter.addTestStepLog("vendors are "+v1+","+v2+","+v3);	
+		driver.findElement(By.xpath("//button[text()='Reject Vendors']")).click();
+		Thread.sleep(2000);
+		
+Thread.sleep(5000);
+m.takePageScreenshot_onPass(driver, "rejected multiple vendors pic1");
+Thread.sleep(2000);
+driver.findElement(By.xpath("//div[contains(text(),'Rejected Vendors')]")).click();
+Thread.sleep(2000);
+m.takePageScreenshot_onPass(driver, "rejected multiple vendors pic2");
+wt.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Rejected Vendors')]")));
+driver.findElement(By.xpath("//div[contains(text(),'Rejected Vendors')]")).click();
+Thread.sleep(3000);
+driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+driver.findElement(By.xpath("(//input[@type='checkbox'])[3]")).click();
+driver.findElement(By.xpath("(//input[@type='checkbox'])[4]")).click();
+Thread.sleep(2000);
+driver.findElement(By.xpath("(//button[text()='Revert Vendors'])[1]")).click();
+Thread.sleep(5000);
+m.takePageScreenshot_onPass(driver, "reject multiple vendor revert pic1");
+Thread.sleep(2000);
+driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
+Thread.sleep(3000);
+m.takePageScreenshot_onPass(driver, "reject multiple vendor revert pic2");
+Thread.sleep(2000);
+String revertedv1=driver.findElement(By.xpath("(//input[@type='checkbox'])[2]/following::div[1]")).getText();
+String revertedv2=driver.findElement(By.xpath("(//input[@type='checkbox'])[3]/following::div[1]")).getText();
+String revertedv3=driver.findElement(By.xpath("(//input[@type='checkbox'])[4]/following::div[1]")).getText();
+ExtentCucumberAdapter.addTestStepLog("vendors are "+revertedv1+","+revertedv2+","+revertedv3);
 	}
 	public void applicationdetectedconfirm(String application) throws InterruptedException
 	{
