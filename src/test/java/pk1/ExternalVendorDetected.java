@@ -64,6 +64,23 @@ public ExternalVendorDetected() throws IOException {
 		{
 			rejected_multiplevendor_revert();
 	}
+		@Then("user confirm multiple vendors and revert")
+		public void revertconfirmmultiplevendor() throws InterruptedException
+		{
+			confirm_multiplevendor_revert();
+	}
+
+		@Then("user confirm multiple apps and revert")
+		public void revertconfirmmultipleapp() throws InterruptedException
+		{
+			confirm_multiple_revertapp();
+	}
+		 
+		@Then("user Reject multiple apps and revert")
+		public void revertrejectmultipleapp() throws InterruptedException
+		{
+			multipleappreject_revert();
+	}
 	// app
 	@Given("user is Login page prior to confirming Application") 
 	public void mygivenlogin_app() throws Throwable 

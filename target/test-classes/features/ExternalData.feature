@@ -12,14 +12,19 @@ Feature: External Data
 #|vendor name  	|
 #|"Nudge Experience LLC" |
 
-Scenario Outline: External Data Vender Detected Reject and Revert
+Scenario: External Data Vender Detected Confirm multiple vendor and Revert
 Given user is Login page prior to confirming vendor
 When user navigate to External Data Vender Detected and New Vendor
-Then user reject new vendor <vendor name>
-Then user revert the rejected vendor <vendor name>
-Examples:
-|vendor name  	|
-|"Nudge Experience LLC" |
+Then user confirm multiple vendors and revert
+
+#Scenario Outline: External Data Vender Detected Reject and Revert
+#Given user is Login page prior to confirming vendor
+#When user navigate to External Data Vender Detected and New Vendor
+#Then user reject new vendor <vendor name>
+#Then user revert the rejected vendor <vendor name>
+#Examples:
+#|vendor name  	|
+#|"Nudge Experience LLC" |
 
 Scenario: External Data Vender Detected Reject multiple vendor and Revert
 Given user is Login page prior to confirming vendor
@@ -36,3 +41,13 @@ Then user reject multiple vendors and revert
 #Examples:
 #|App name  	  |
 #|"Connectors" |
+
+Scenario: External Data Vender Detected Confirm multiple App and Revert
+Given user is Login page prior to confirming Application
+When user navigate to External Data Application Detected and New Application
+Then user confirm multiple apps and revert
+
+Scenario: External Data Vender Detected Reject multiple App and Revert
+Given user is Login page prior to confirming Application
+When user navigate to External Data Application Detected and New Application
+Then user Reject multiple apps and revert
