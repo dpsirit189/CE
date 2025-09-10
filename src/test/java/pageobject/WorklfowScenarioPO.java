@@ -353,7 +353,7 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 	public void wfhangedate_markcomplete() throws InterruptedException
 	{
 		Actions act=new Actions(driver);
- WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+ WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[text()='All'])[1]")));
 	driver.findElement(By.xpath("(//div[text()='All'])[1]")).click();
 	Thread.sleep(3000);
@@ -364,9 +364,11 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 		
 			driver.findElement(By.xpath("(//*[text()='"+workflow+"'])[1]")).click();
 			Thread.sleep(2000);
-			 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Due Date:']/following::div[1]")));
-			driver.findElement(By.xpath("//*[text()='Due Date:']/following::div[1]")).click();
-			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Due Date:']/following::div[1]")));
+			//driver.findElement(By.xpath("//*[text()='Due Date:']/following::div[1]")).click();
+			 driver.findElement(By.xpath("//input[@placeholder='Select date']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
+			 driver.findElement(By.xpath("//input[@placeholder='Select date']")).sendKeys("Sep 30, 2025");
+				Thread.sleep(2000);
 			//div[text()='30']
 		//	 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='30']")));
 		//	driver.findElement(By.xpath("//div[text()='30']")).click();
@@ -379,10 +381,29 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 					{
 						//WebElement element = driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]"));
 						Thread.sleep(1000); 
-					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]")));
-		
-						 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//p[text()='Mark Complete'])[1]")));
-					driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]")).click();
+					
+						
+					 try {
+						 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("(//p[text()='Upcoming'])[1]")));
+						 Thread.sleep(1000); 
+						driver.findElement(By.xpath("(//p[text()='Upcoming'])[1]")).click();
+						Thread.sleep(7000);
+						 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//p[text()='In Progress'])[1]")));
+//						if(driver.findElement(By.xpath("(//p[text()='In Progress'])[1]")).isDisplayed())
+//						{
+//						 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//p[text()='Mark Complete'])[1]")));
+//						}
+						 
+						 Thread.sleep(1000); 
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+								
+						
+						 ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]")));
+						 Thread.sleep(1000); 
+						 driver.findElement(By.xpath("(//p[text()='Mark Complete'])[1]")).click();
 					Thread.sleep(5000);
 					m.takePageScreenshot_onPass(driver, "wk markcomplete"+i);
 					Thread.sleep(1000);

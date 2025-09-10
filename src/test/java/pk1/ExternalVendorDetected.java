@@ -69,11 +69,27 @@ public ExternalVendorDetected() throws IOException {
 		{
 			confirm_multiplevendor_revert();
 	}
+		@Then("user confirm all vendors and revert")
+		public void revertconfirmallvendor() throws InterruptedException
+		{
+			allvendor_confirm_revert();
+	}
+		@Then("user reject all vendors and revert")
+		public void revertrejectallvendor() throws InterruptedException
+		{
+			allvendor_reject_revert();
+	}
 
 		@Then("user confirm multiple apps and revert")
 		public void revertconfirmmultipleapp() throws InterruptedException
 		{
 			confirm_multiple_revertapp();
+	}
+
+		@Then("user confirm all apps and revert")
+		public void revertconfirm_allapp() throws InterruptedException
+		{
+			alltab_confirmapp_revert();
 	}
 		 
 		@Then("user Reject multiple apps and revert")
