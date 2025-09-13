@@ -1,0 +1,122 @@
+-------------------------------------------------------------------------------
+Test set: pk1.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 5.172 sec <<< FAILURE!
+multiple products #1(orangehrm)  Time elapsed: 1.848 sec  <<< ERROR!
+org.openqa.selenium.SessionNotCreatedException: session not created: This version of ChromeDriver only supports Chrome version 136
+Current browser version is 139.0.7258.128 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Build info: version: '3.7.0', revision: '2321c73', time: '2017-11-02T22:22:35.584Z'
+System info: host: 'DESKTOP-ILML59F', ip: '192.168.29.15', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.2'
+Driver info: driver.version: ChromeDriver
+remote stacktrace: 	GetHandleVerifier [0x00007FF7EB4ACF65+75717]
+	GetHandleVerifier [0x00007FF7EB4ACFC0+75808]
+	(No symbol) [0x00007FF7EB278F9A]
+	(No symbol) [0x00007FF7EB2BD1DF]
+	(No symbol) [0x00007FF7EB2BC22B]
+	(No symbol) [0x00007FF7EB2B6518]
+	(No symbol) [0x00007FF7EB2B1ADD]
+	(No symbol) [0x00007FF7EB3052D8]
+	(No symbol) [0x00007FF7EB3048B0]
+	(No symbol) [0x00007FF7EB2F7153]
+	(No symbol) [0x00007FF7EB2C0421]
+	(No symbol) [0x00007FF7EB2C11B3]
+	GetHandleVerifier [0x00007FF7EB7AD74D+3223469]
+	GetHandleVerifier [0x00007FF7EB7A7CF2+3200338]
+	GetHandleVerifier [0x00007FF7EB7C5B23+3322755]
+	GetHandleVerifier [0x00007FF7EB4C6A3A+180890]
+	GetHandleVerifier [0x00007FF7EB4CE13F+211359]
+	GetHandleVerifier [0x00007FF7EB4B52B4+109332]
+	GetHandleVerifier [0x00007FF7EB4B5462+109762]
+	GetHandleVerifier [0x00007FF7EB49BA79+4825]
+	BaseThreadInitThunk [0x00007FFF02E2E8D7+23]
+	RtlUserThreadStart [0x00007FFF0375C34C+44]
+
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.W3CHandshakeResponse.lambda$new$0(W3CHandshakeResponse.java:57)
+	at org.openqa.selenium.remote.W3CHandshakeResponse.lambda$getResponseFunction$2(W3CHandshakeResponse.java:104)
+	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Spliterators$ArraySpliterator.tryAdvance(Spliterators.java:958)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:502)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:488)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:142)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:181)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:168)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:123)
+	at pk1.Demotest.mygivenlogin(Demotest.java:25)
+	at ?.user is Login page(file:///C:/Users/PRITI/Documents/Automation%20Test/bddfinal-main/bddfinal-main/src/test/resources/features/demo.feature:16)
+
+multiple products #2(orangehrm)  Time elapsed: 1.472 sec  <<< ERROR!
+org.openqa.selenium.SessionNotCreatedException: session not created: This version of ChromeDriver only supports Chrome version 136
+Current browser version is 139.0.7258.128 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Build info: version: '3.7.0', revision: '2321c73', time: '2017-11-02T22:22:35.584Z'
+System info: host: 'DESKTOP-ILML59F', ip: '192.168.29.15', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.2'
+Driver info: driver.version: ChromeDriver
+remote stacktrace: 	GetHandleVerifier [0x00007FF7EB4ACF65+75717]
+	GetHandleVerifier [0x00007FF7EB4ACFC0+75808]
+	(No symbol) [0x00007FF7EB278F9A]
+	(No symbol) [0x00007FF7EB2BD1DF]
+	(No symbol) [0x00007FF7EB2BC22B]
+	(No symbol) [0x00007FF7EB2B6518]
+	(No symbol) [0x00007FF7EB2B1ADD]
+	(No symbol) [0x00007FF7EB3052D8]
+	(No symbol) [0x00007FF7EB3048B0]
+	(No symbol) [0x00007FF7EB2F7153]
+	(No symbol) [0x00007FF7EB2C0421]
+	(No symbol) [0x00007FF7EB2C11B3]
+	GetHandleVerifier [0x00007FF7EB7AD74D+3223469]
+	GetHandleVerifier [0x00007FF7EB7A7CF2+3200338]
+	GetHandleVerifier [0x00007FF7EB7C5B23+3322755]
+	GetHandleVerifier [0x00007FF7EB4C6A3A+180890]
+	GetHandleVerifier [0x00007FF7EB4CE13F+211359]
+	GetHandleVerifier [0x00007FF7EB4B52B4+109332]
+	GetHandleVerifier [0x00007FF7EB4B5462+109762]
+	GetHandleVerifier [0x00007FF7EB49BA79+4825]
+	BaseThreadInitThunk [0x00007FFF02E2E8D7+23]
+	RtlUserThreadStart [0x00007FFF0375C34C+44]
+
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.W3CHandshakeResponse.lambda$new$0(W3CHandshakeResponse.java:57)
+	at org.openqa.selenium.remote.W3CHandshakeResponse.lambda$getResponseFunction$2(W3CHandshakeResponse.java:104)
+	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Spliterators$ArraySpliterator.tryAdvance(Spliterators.java:958)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:502)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:488)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:142)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:181)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:168)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:123)
+	at pk1.Demotest.mygivenlogin(Demotest.java:25)
+	at ?.user is Login page(file:///C:/Users/PRITI/Documents/Automation%20Test/bddfinal-main/bddfinal-main/src/test/resources/features/demo.feature:16)
+

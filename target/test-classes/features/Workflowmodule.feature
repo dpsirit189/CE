@@ -3,11 +3,11 @@
 
 Feature: WorkFlow Module
 
-#Scenario: ADD A NEW WORKFLOW  
-#Given user is cloudeagle Login page 
-#When user enter cloudeagle credentials
-#Then user navigate to workflow module
-#Then user fill workflow form and submit
+Scenario: ADD A NEW WORKFLOW  
+Given user is cloudeagle Login page 
+When user enter cloudeagle credentials
+Then user navigate to workflow module
+Then user fill workflow form and submit
 
 Scenario Outline: Workflow change due date and mark complete
 When user navigate to workflows

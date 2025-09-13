@@ -37,6 +37,7 @@ public class LandingPage {
 	String Expectedurllogin="https://somecorp.cloudeagle.us/app/signin";
 	String zoomuser="";
 	String zoompass="";
+	String Automationrun="";
 	//String Expectedurldashboard="https://somecorp.cloudeagle.us/app/dashboard";
 	public LandingPage() throws IOException
 	{
@@ -47,15 +48,25 @@ public class LandingPage {
 		browser_run=props.getProperty("browser");
 		zoomuser=props.getProperty("zoomuserid");
 		zoompass=props.getProperty("zoompassword");
+		Automationrun=props.getProperty("runenv");
+		
 		if(browser_run.equals("chrome"))
 		{
 			System.setProperty("webdriver.chrome.driver", "./Browsers/chromedriver.exe"); //where chromedriver exists(path)
 			driver = new ChromeDriver(); 
 		}
 		driver.manage().window().maximize();
+		if(Automationrun.equals("charlie"))
+		{
+			runurl=props.getProperty("charlieurl");
+			driver.get(runurl);
+		}
+		else
+		{
 		runurl=props.getProperty("devurl");
 		workflow=props.getProperty("workflowName");
 		driver.get(runurl);
+		}
 	}
 	public void enter_credentials() throws InterruptedException
 	{
@@ -68,9 +79,21 @@ public class LandingPage {
 		driver.findElement(By.name("passField")).sendKeys(props.getProperty("userpassword"));
 		Thread.sleep(3000);
 
-		driver.findElement(By.xpath("//button/h5[text()='Sign in']")).click();
-
-		Thread.sleep(3000);
+		try {
+			driver.findElement(By.xpath("//button/h5[text()='Sign in']")).click();
+			Thread.sleep(3000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		System.out.println("no sign in button");
+		}
+		try {
+			driver.findElement(By.xpath("//p[text()='Log in']")).click();
+			Thread.sleep(3000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("no login button");
+		}
+		
 	}
 	public void enter_wrongcredentials() throws InterruptedException
 	{
@@ -108,6 +131,7 @@ m.takePageScreenshot_onPass(driver, "dashboard");
 assertEquals(act, Expectedurllogin);
 		driver.close();
 	}
+	
 	public void navigate_workflow() throws InterruptedException
 	{
 		Thread.sleep(15000);
