@@ -16,9 +16,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageobject.LandingPage;
+import pageobject.ProcurementPO;
 
 
-public class ProcurementTest extends LandingPage {
+public class ProcurementTest extends ProcurementPO {
 public ProcurementTest() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,7 +54,31 @@ public ProcurementTest() throws IOException {
 	{
 		Thread.sleep(1000);
 		procurement_formfill(req);
-		
-
+}
+	
+	@Then("procurement reset criteria")
+	public void procurementresetcriteria() throws InterruptedException
+	{
+		Thread.sleep(1000);
+		procurementresetfilter();
+}
+	
+	@Then("procurement apply filter and save")
+	public void procurementsave() throws InterruptedException
+	{
+		Thread.sleep(1000);
+		procurement_filter_save();
+}
+	@Then("procurement share view and copy link")
+	public void procurementsharelink() throws InterruptedException
+	{
+		Thread.sleep(1000);
+		procurementshareview();
+}
+	@Then("user mark Approve and auto trigger move to next")
+	public void procurementautotrigger() throws InterruptedException
+	{
+		Thread.sleep(1000);
+		procurechangedate_markcomplete();
 }
 }

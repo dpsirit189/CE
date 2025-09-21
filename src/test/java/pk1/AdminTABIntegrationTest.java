@@ -56,5 +56,13 @@ public void adminintegrationuservoiceconnect(String accesstoken,String subdomain
 	 navigatetoadminintegration();
 	uservoiceconnect(accesstoken,subdomain);
 }
+ 
+@Then("user navigate to zoom app view and download instructions") 
+public void viewdownloadinst() throws Throwable 
+{
+	System.out.println("inside viewdownloadinst");
+	 navigatetoadminintegration();
+	 viewdownload_instruction();
 	
+}
 }

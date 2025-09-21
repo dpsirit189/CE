@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.Set;
 
@@ -16,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
@@ -33,11 +36,15 @@ public class LandingPage {
 	String password="";
 	Properties props;
 	String workflow="";
-	String procurement_req="dspproc_req8";  // change this
+	String procurement_req="dspproc_req10";  // change this
 	String Expectedurllogin="https://somecorp.cloudeagle.us/app/signin";
 	String zoomuser="";
 	String zoompass="";
 	String Automationrun="";
+	String allvenfullname="";
+	String allvenname="";
+	String confirm_mult_ven="";
+	String multiapp="";
 	//String Expectedurldashboard="https://somecorp.cloudeagle.us/app/dashboard";
 	public LandingPage() throws IOException
 	{
@@ -49,7 +56,10 @@ public class LandingPage {
 		zoomuser=props.getProperty("zoomuserid");
 		zoompass=props.getProperty("zoompassword");
 		Automationrun=props.getProperty("runenv");
-		
+		allvenfullname=props.getProperty("allvendorfullname");
+		allvenname=props.getProperty("allvendorname");
+		confirm_mult_ven=props.getProperty("confirmmultiple_vendor");
+		multiapp=props.getProperty("confirmmultiplapp");
 		if(browser_run.equals("chrome"))
 		{
 			System.setProperty("webdriver.chrome.driver", "./Browsers/chromedriver.exe"); //where chromedriver exists(path)
@@ -71,7 +81,7 @@ public class LandingPage {
 	public void enter_credentials() throws InterruptedException
 	{
 		System.out.println("inside when");
-
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(22));
 		// driver.findElement(By.name("usernamse")).click();
 		Thread.sleep(6000);
 		driver.findElement(By.name("emailField")).sendKeys(props.getProperty("loginid"));
@@ -80,7 +90,7 @@ public class LandingPage {
 		Thread.sleep(3000);
 
 		try {
-			driver.findElement(By.xpath("//button/h5[text()='Sign in']")).click();
+			driver.findElement(By.xpath("//*[text()='Sign in']")).click();
 			Thread.sleep(3000);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -93,6 +103,16 @@ public class LandingPage {
 			// TODO Auto-generated catch block
 			System.out.println("no login button");
 		}
+		try {
+			driver.findElement(By.xpath("//*[text()='Log In']")).click();
+			Thread.sleep(3000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("no login button");
+		}
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"appBodyContainer\"]/div[1]/div[2]/button")));
+		ExtentCucumberAdapter.addTestStepLog("Current Env URL -"+driver.getCurrentUrl());
 		
 	}
 	public void enter_wrongcredentials() throws InterruptedException
@@ -139,7 +159,7 @@ assertEquals(act, Expectedurllogin);
 		Thread.sleep(3000);	
 		driver.findElement(By.xpath("//label[text()='Workflows']")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button/h7[text()='Start New Workflow']")).click();
+		driver.findElement(By.xpath("//*[text()='Start New Workflow']")).click();
 		Thread.sleep(3000);
 	}
 	public void navigate_procurement() throws InterruptedException
@@ -213,7 +233,8 @@ assertEquals(act, Expectedurllogin);
 		//	    driver.switchTo().window((String) windowHandles1[1]);
 		//	    Thread.sleep(5000);	
 		//        driver.switchTo().window((String) windowHandles1[0]);
-		driver.findElement(By.xpath("//button/h7[text()='Start Workflow']")).click();
+	//	driver.findElement(By.xpath("//button/h7[text()='Start Workflow']")).click();
+		driver.findElement(By.xpath("//*[text()='Start Workflow']")).click();
 		Thread.sleep(8000);
 		driver.findElement(By.xpath("//p[text()='Test FE Editing 2']//following::div[2]")).click();
 		Thread.sleep(2000);
@@ -222,7 +243,7 @@ assertEquals(act, Expectedurllogin);
 		act.sendKeys(Keys.ENTER);
 		act.build().perform();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//button/h7[text()='Confirm']")).click();
+		driver.findElement(By.xpath("//*[text()='Confirm']")).click();
 		Thread.sleep(12000);
 
 		driver.navigate().to("https://somecorp.cloudeagle.us/app/workflow/assigned");
@@ -249,7 +270,7 @@ assertEquals(act, Expectedurllogin);
 	public void procurement_formfill(String req) throws InterruptedException
 	{
 		Actions act=new Actions(driver);
-		driver.findElement(By.xpath("//button/h7[text()='Raise a request']")).click();
+		driver.findElement(By.xpath("//*[text()='Raise a request']")).click();
 		Thread.sleep(4000);	
 		driver.findElement(By.xpath("//p[text()='I want to request for']//following::div[1]")).click();
 		Thread.sleep(2000);	
@@ -321,7 +342,7 @@ assertEquals(act, Expectedurllogin);
 			
 			driver.findElement(By.xpath("//input[@placeholder='your answer']")).sendKeys("for work !");
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//button/h7[text()='Submit']")).click();
+			driver.findElement(By.xpath("//*[text()='Submit']")).click();
 			Thread.sleep(2000);
 			driver.findElement(By.xpath("//input[@placeholder='Request Name']")).sendKeys(procurement_req);
 			Thread.sleep(2000);	

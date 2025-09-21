@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 public class ExternalData extends LandingPage{
-	
+
 	public ExternalData() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -110,7 +110,7 @@ public class ExternalData extends LandingPage{
 		Thread.sleep(7000);
 		driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]")).click();
 		Thread.sleep(7000);
-		ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),"nudge, llc");
+		ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),"nudge");
 		ac.build().perform();
 		Thread.sleep(7000);
 		ac.sendKeys(Keys.ARROW_DOWN);
@@ -119,7 +119,7 @@ public class ExternalData extends LandingPage{
 		ac.build().perform();
 		//driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")).sendKeys("nudge, llc"+Keys.ARROW_DOWN+Keys.ENTER);
 		Thread.sleep(7000);
-		driver.findElement(By.xpath("//button/h7[text()='Confirm']")).click();
+		driver.findElement(By.xpath("//*[text()='Confirm']")).click();
 	
 		
 		Thread.sleep(12000);
@@ -275,6 +275,8 @@ driver.close();
 		}
 		driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
 		Thread.sleep(3000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(confirm_mult_ven);
+		Thread.sleep(9000);
 		//wt.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@type='checkbox'])[2]")));
 	driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
 	driver.findElement(By.xpath("(//input[@type='checkbox'])[3]")).click();
@@ -291,7 +293,7 @@ driver.close();
 		wt.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Vendor']//following::div[1]")));
 		driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]")).click();
 		Thread.sleep(7000);
-		ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),"nudge, llc");
+		ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),confirm_mult_ven);
 		ac.build().perform();
 		Thread.sleep(7000);
 		ac.sendKeys(Keys.ARROW_DOWN);
@@ -300,14 +302,14 @@ driver.close();
 		ac.build().perform();
 		//driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")).sendKeys("nudge, llc"+Keys.ARROW_DOWN+Keys.ENTER);
 		Thread.sleep(7000);
-		driver.findElement(By.xpath("//button/h7[text()='Confirm']")).click();
+		driver.findElement(By.xpath("//*[text()='Confirm']")).click();
 		Thread.sleep(5000);
 		m.takePageScreenshot_onPass(driver, "confirm multiple vendors pic1");
 		//dba
 				wt.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[text()='Vendor']//following::div[1]")));
 				driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]")).click();
 				Thread.sleep(7000);
-				ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),"dba group");
+				ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),confirm_mult_ven);
 				ac.build().perform();
 				Thread.sleep(7000);
 				ac.sendKeys(Keys.ARROW_DOWN);
@@ -315,9 +317,33 @@ driver.close();
 				ac.sendKeys(Keys.ENTER);
 				ac.build().perform();
 				//driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")).sendKeys("nudge, llc"+Keys.ARROW_DOWN+Keys.ENTER);
-				Thread.sleep(7000);
-				driver.findElement(By.xpath("//button/h7[text()='Confirm']")).click();
-				Thread.sleep(17000);
+				Thread.sleep(4000);
+				driver.findElement(By.xpath("//*[text()='Confirm']")).click();
+				Thread.sleep(3000);
+				 try {
+	
+					 driver.findElement(By.xpath("(//button[text()='Merge'])[1]")).click();
+					 Thread.sleep(7000);
+					 m.takePageScreenshot_onPass(driver, "vendor merged "+confirm_mult_ven);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+				System.out.println("no merge button");
+				}
+				 try {
+						
+					 driver.findElement(By.xpath("(//button[text()='Merge'])[1]")).click();
+					 Thread.sleep(7000);
+					 m.takePageScreenshot_onPass(driver, "vendor merged "+confirm_mult_ven);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+				System.out.println("no merge button");
+				}
+				try {
+					driver.findElement(By.xpath("//*[text()='Confirm']")).click();
+					Thread.sleep(17000);
+				} catch (Exception e) {
+					
+				}
 				
 		wt.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(),'Confirmed Vendors')])[1]")));
 		m.takePageScreenshot_onPass(driver, "confirm multiple vendors pic2");
@@ -328,6 +354,8 @@ driver.close();
 		wt.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(),'Confirmed Vendors')])[1]")));
 		driver.findElement(By.xpath("(//div[contains(text(),'Confirmed Vendors')])[1]")).click();
 		Thread.sleep(3000);
+		driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(confirm_mult_ven);
+		Thread.sleep(9000);
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[3]")).click();
 		Thread.sleep(2000);
@@ -337,17 +365,24 @@ driver.close();
 		driver.findElement(By.xpath("//button[text()='Revert']")).click();
 		Thread.sleep(38000);
 		
-		//wt.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(),'New Vendors')])[1]")));
+		try {
+			wt.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(),'New Vendors')])[1]")));
 
-		//m.takePageScreenshot_onPass(driver, "confirm multiple vendor revert pic1");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
-		Thread.sleep(3000);
-		m.takePageScreenshot_onPass(driver, "confirm multiple vendor revert pic2");
-		Thread.sleep(2000);
-		String revertedv1=driver.findElement(By.xpath("(//input[@type='checkbox'])[2]/following::div[1]")).getText();
-		String revertedv2=driver.findElement(By.xpath("(//input[@type='checkbox'])[3]/following::div[1]")).getText();
-		ExtentCucumberAdapter.addTestStepLog("vendors are "+revertedv1+", "+revertedv2);
+			//m.takePageScreenshot_onPass(driver, "confirm multiple vendor revert pic1");
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("(//div[contains(text(),'New Vendors')])[1]")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(confirm_mult_ven);
+			Thread.sleep(9000);
+			m.takePageScreenshot_onPass(driver, "confirm multiple vendor revert pic2");
+			Thread.sleep(2000);
+			String revertedv1=driver.findElement(By.xpath("(//input[@type='checkbox'])[2]/following::div[1]")).getText();
+			String revertedv2=driver.findElement(By.xpath("(//input[@type='checkbox'])[3]/following::div[1]")).getText();
+			ExtentCucumberAdapter.addTestStepLog("vendors are "+revertedv1+", "+revertedv2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("done revert after confirm");
+		}
 		driver.close();
 	}
 	public void allvendor_confirm_revert() throws InterruptedException
@@ -357,13 +392,13 @@ driver.close();
 		wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]"))));
 				driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]")).click();
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(9000);
 				driver.findElement(By.xpath("(//button[text()='Confirm Vendor'])[1]")).click();
 				Thread.sleep(7000);
 				driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]")).click();
 				Thread.sleep(7000);
-				ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),"nudge, llc");
+				ac.sendKeys(driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")),allvenname);
 				ac.build().perform();
 				Thread.sleep(7000);
 				ac.sendKeys(Keys.ARROW_DOWN);
@@ -372,32 +407,33 @@ driver.close();
 				ac.build().perform();
 				//driver.findElement(By.xpath("//p[text()='Vendor']//following::div[1]//input")).sendKeys("nudge, llc"+Keys.ARROW_DOWN+Keys.ENTER);
 				Thread.sleep(7000);
-				driver.findElement(By.xpath("//button/h7[text()='Confirm']")).click();
+				driver.findElement(By.xpath("//*[text()='Confirm']")).click();
 			
 				
 				Thread.sleep(12000);
-				m.takePageScreenshot_onPass(driver, "all vendor confirm nudgellc pic1");
+				m.takePageScreenshot_onPass(driver, "all vendor confirm "+allvenfullname+"  pic1");
 				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@placeholder='Search Vendors']"))));
 				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
 				Thread.sleep(5000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(9000);
 				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//div[contains(text(),'Confirmed Vendors')])[1]"))));
 				driver.findElement(By.xpath("(//div[contains(text(),'Confirmed Vendors')])[1]")).click();
 				Thread.sleep(2000);
+				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@placeholder='Search Vendors']"))));
 				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
 				Thread.sleep(5000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(8000);
-				m.takePageScreenshot_onPass(driver, "all vendor confirm nudgellc pic2");
+				m.takePageScreenshot_onPass(driver, "all vendor confirm "+allvenfullname+" pic2");
 				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]"))));
 				driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]")).click();
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(9000);
 				driver.findElement(By.xpath("(//button[text()='Revert Vendor'])[1]")).click();
 				Thread.sleep(15000);
-				m.takePageScreenshot_onPass(driver, "all vendor revert nudgellc pic3");
+				m.takePageScreenshot_onPass(driver, "all vendor revert "+allvenfullname+" pic3");
 				Thread.sleep(1000);
 				driver.close();
 				
@@ -409,28 +445,30 @@ driver.close();
 		wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]"))));
 				driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]")).click();
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@placeholder='Search Vendors']"))));
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(9000);	
 				driver.findElement(By.xpath("(//button[text()='Confirm Vendor'])[1]/following::div[1]")).click();
 				Thread.sleep(2000);
 				
 				driver.findElement(By.xpath("(//button[text()='Reject'])[1]")).click();
 				Thread.sleep(5000);
-				m.takePageScreenshot_onPass(driver, "all vendor reject nudgellc pic1");
+				m.takePageScreenshot_onPass(driver, "all vendor reject "+allvenfullname+" pic1");
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//div[contains(text(),'Rejected Vendors')]")).click();
 				Thread.sleep(5000);
-				m.takePageScreenshot_onPass(driver, "all vendor reject nudgellc pic2");
+				m.takePageScreenshot_onPass(driver, "all vendor reject "+allvenfullname+" pic2");
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("(//div[contains(text(),'All Vendors')])[1]")).click();
 				Thread.sleep(2000);
+				wt.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@placeholder='Search Vendors']"))));
 				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
 				Thread.sleep(1000);
-				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys("nudge");
+				driver.findElement(By.xpath("//input[@placeholder='Search Vendors']")).sendKeys(allvenfullname);
 				Thread.sleep(9000);	
 				driver.findElement(By.xpath("(//button[text()='Revert Vendor'])[1]")).click();
 				Thread.sleep(3000);
-				m.takePageScreenshot_onPass(driver, "all vendor revert reject nudgellc pic3");
+				m.takePageScreenshot_onPass(driver, "all vendor revert reject "+allvenfullname+" pic3");
 				Thread.sleep(1000);
 				driver.close();
 				
@@ -466,7 +504,7 @@ driver.close();
 	public void confirm_multiple_revertapp() throws InterruptedException
 	{
 		WebDriverWait wt=new WebDriverWait(driver,Duration.ofSeconds(40));
-		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("zoominfo");
+		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys(multiapp);
 		Thread.sleep(9000);	
 	
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
@@ -493,7 +531,7 @@ driver.close();
 		try {
 			driver.findElement(By.xpath("(//div[contains(text(),'New App')])[1]")).click();
 			Thread.sleep(2000);
-			driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("zoominfo");
+			driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys(multiapp);
 			Thread.sleep(9000);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -505,7 +543,7 @@ driver.close();
 	public void multipleappreject_revert() throws InterruptedException
 	{
 		WebDriverWait wt=new WebDriverWait(driver,Duration.ofSeconds(40));
-		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("zoominfo");
+		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys(multiapp);
 		Thread.sleep(9000);	
 	
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
@@ -531,7 +569,7 @@ driver.close();
 		Thread.sleep(3000);	
 		driver.findElement(By.xpath("(//div[contains(text(),'New App')])[1]")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("zoominfo");
+		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys(multiapp);
 		Thread.sleep(9000);	
 		m.takePageScreenshot_onPass(driver, "rejected zoominfo revert pic3");
 		driver.close();

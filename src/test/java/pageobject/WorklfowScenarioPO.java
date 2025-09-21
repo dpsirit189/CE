@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 public class WorklfowScenarioPO extends LandingPage{
-	
+	String testimgdestination=System.getProperty("user.dir")+"/documentuploads/test img.jpeg";
 	public WorklfowScenarioPO() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -363,7 +363,7 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 			Thread.sleep(2000);
 		
 			driver.findElement(By.xpath("(//*[text()='"+workflow+"'])[1]")).click();
-			Thread.sleep(2000);
+			Thread.sleep(9000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Due Date:']/following::div[1]")));
 			//driver.findElement(By.xpath("//*[text()='Due Date:']/following::div[1]")).click();
 			 driver.findElement(By.xpath("//input[@placeholder='Select date']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
@@ -433,11 +433,11 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 				//driver.findElement(By.xpath("//textarea[@id='mentions_input']")).sendKeys("workflow automation comment @Digvijay"+Keys.ENTER);
 				driver.findElement(By.xpath("//textarea[@id='mentions_input']")).sendKeys("workflow automation comment @Digvijay"+Keys.ENTER);
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//input[@type='file']")).sendKeys("C:\\cloud eagle recording\\count check.png");
+				driver.findElement(By.xpath("//input[@type='file']")).sendKeys(testimgdestination);
 				Thread.sleep(4000);
-				 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button/h7[text()='Send']")));
+				 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Send']")));
 				try {
-					driver.findElement(By.xpath("//button/h7[text()='Send']")).click();
+					driver.findElement(By.xpath("//*[text()='Send']")).click();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					

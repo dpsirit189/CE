@@ -195,6 +195,30 @@ public class AdminTabIntegrationPO extends LandingPage{
 		//boolean setting=anybuttonpresent();
 		
 	}
+	public void viewdownload_instruction() throws InterruptedException
+	{
+		Actions act=new Actions(driver);
+		Thread.sleep(2000);
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+			//Thread.sleep(11000);
+		 wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text()='Single Sign On']"))));
+			driver.findElement(By.xpath("//span[text()='Single Sign On']")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//span[text()='Direct Integrations']")).click();
+			Thread.sleep(2000);
+			m.takePageScreenshot_onPass(driver, "Direct Integrations tab");
+			boolean di=anybuttonpresent();
+			driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("Zoom");
+			Thread.sleep(7000);
+			driver.findElement(By.xpath("(//button[text()='Connect'])[1]/preceding::button[1]")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("(//a[contains(@download,'Zoom')])[1]")).click();
+			Thread.sleep(2000);
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			
+		
+	}
 	public void zoomconnect() throws InterruptedException
 	{
 		Actions act=new Actions(driver);
@@ -208,9 +232,9 @@ public class AdminTabIntegrationPO extends LandingPage{
 		Thread.sleep(2000);
 		m.takePageScreenshot_onPass(driver, "Direct Integrations tab");
 		boolean di=anybuttonpresent();
-		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("Zoom Webinars");
+		driver.findElement(By.xpath("//input[@placeholder='Search Applications']")).sendKeys("Zoom");
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("(//button[text()='Connect'])[2]")).click();
+		driver.findElement(By.xpath("(//button[text()='Connect'])[1]")).click();
 		Thread.sleep(5000);	
 			    String parentHandle = driver.getWindowHandle();
 			    Object[] windowHandles1=driver.getWindowHandles().toArray();
@@ -225,9 +249,20 @@ public class AdminTabIntegrationPO extends LandingPage{
 				
 				
 				//        Thread.sleep(2000);	
-				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Allow']")));
-				driver.findElement(By.xpath("//button[text()='Allow']")).click();
-				Thread.sleep(6000);
+				try {
+					wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Allow']")));
+					driver.findElement(By.xpath("//button[text()='Allow']")).click();
+					Thread.sleep(6000);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+				
+				}
+				try {
+					driver.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+				
+				}
 				 driver.switchTo().window((String) windowHandles1[0]); 
 				 Thread.sleep(1000);
 				m.takePageScreenshot_onPass(driver, "zoom connected for dsp");
@@ -272,7 +307,7 @@ public class AdminTabIntegrationPO extends LandingPage{
 		driver.findElement(By.xpath("//input[@name='SUB_DOMAIN']")).sendKeys(subdomain);
 		Thread.sleep(2000);
 		m.takePageScreenshot_onPass(driver, "uservoice before connect pic1");
-		driver.findElement(By.xpath("//button/h7[text()='Connect']")).click();
+		driver.findElement(By.xpath("(//*[text()='Connect'])[3]")).click();
 		Thread.sleep(5000);
 		m.takePageScreenshot_onPass(driver, "uservoice after connect pic2");
 		Thread.sleep(5000);

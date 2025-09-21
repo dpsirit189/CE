@@ -42,11 +42,38 @@ public void accessmgmntuserprovision() throws Throwable
 	
 }
 
-@Then("user upload document") 
+@Then("user upload document save and verify line totals") 
 public void useruploaddoc() throws Throwable 
 {
 	upload_doc_manual("test");
 	
 }
+@Then("user edit line and verify line totals") 
+public void usereditdoc() throws Throwable 
+{
+	manual_edit_lineaftersave();
+	
+}
+@Then("user upload invoice document save and verify line totals") 
+public void useruploadinvoicedoc() throws Throwable 
+{
+	uploadinvoice();
+	
+}
+@Then("publish document and search") 
+public void useruploadinvoicedocpublish() throws Throwable 
+{
+	publish();
+	editpublish_invoice();
+	
+}
+
+@Then("extract document data and verify") 
+public void extractdataverifu() throws Throwable 
+{
+	extractdata();
+	
+}
+
 	
 }
