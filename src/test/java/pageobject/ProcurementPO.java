@@ -69,7 +69,7 @@ public class ProcurementPO extends LandingPage{
 	public void procurement_filter_save() throws InterruptedException
 	{
 		Actions act=new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[text()='All'])[1]")));
 		driver.findElement(By.xpath("(//div[text()='All'])[1]")).click();
@@ -138,9 +138,10 @@ public class ProcurementPO extends LandingPage{
 		Thread.sleep(3000);
 		m.takePageScreenshot_onPass(driver, "procurement save view pic1");
 		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[3]/div/div/div[1]/div[1]/div[3]/p")));
 		String rowsafterfilter=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[3]/div/div/div[1]/div[1]/div[3]/p")).getText();
 		ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
-		
+		System.out.println(rowsafterfilter);
 		
 		
 	}
@@ -148,28 +149,33 @@ public class ProcurementPO extends LandingPage{
 	{
 		
 		Actions act=new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
 		
 		ExtentCucumberAdapter.addTestStepLog("procurementshareview");
 		Thread.sleep(2000);
 		
-		try {
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='proc_automation']/following::div[1]/span")));
-			driver.findElement(By.xpath("//*[text()='proc_automation']/following::div[1]/span")).click();
-			act.click(driver.findElement(By.xpath("//*[text()='proc_automation']/following::div[1]/span")));
-			act.build().perform();
-			Thread.sleep(2000);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			
-		}
+
 		
 		try {
-			driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[3]/div/div/div[1]/div[1]/div[1]/div[4]/span")).click();
-			Thread.sleep(2000);
+			act.moveToElement(driver.findElement(By.xpath("//*[text()='proc_automation']/following::div[1]")));
+			act.build().perform();
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='proc_automation']/following::div[1]/span")));
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+            // Perform click using JavascriptExecutor
+            js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//*[text()='proc_automation']/following::div[1]/span")));
+            Thread.sleep(4000);
+//            js.executeScript("arguments[0].click();", driver.findElement(By.xpath("//*[text()='proc_automation']/following::div[1]/span")));
+//            Thread.sleep(4000);
+            System.out.println("2nd try js succes");
+			//act.click(driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[3]/div/div/div[1]/div[1]/div[1]/div[4]")));
+			//act.build().perform();
+			System.out.println("2nd try succes");
 		} catch (Exception e) {
-			
+			// TODO Auto-generated catch block
+			System.out.println("2nd catch");
 		}
 		Thread.sleep(5000);
 		
@@ -179,13 +185,49 @@ public class ProcurementPO extends LandingPage{
 		m.takePageScreenshot_onPass(driver, "share view pic1");
 		driver.switchTo().newWindow(WindowType.TAB);
 		driver.navigate().to(prourl);
+		 Object[] windowHandles=driver.getWindowHandles().toArray();
 		Thread.sleep(15000);
 		ExtentCucumberAdapter.addTestStepLog("procurementshareview is "+prourl);
 		m.takePageScreenshot_onPass(driver, "share view pic2");
 		Thread.sleep(1000);
-		driver.quit();
+		driver.close();
+		 driver.switchTo().window((String) windowHandles[0]);
+		driver.navigate().refresh();
+		deleteview();
 		
+	}
+	public void deleteview() throws InterruptedException
+	{
+		Actions act=new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[text()='All'])[1]")));
+		driver.findElement(By.xpath("(//div[text()='All'])[1]")).click();
+		Thread.sleep(3000);
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[text()='proc_automation'])[1]")));
+		driver.findElement(By.xpath("(//*[text()='proc_automation'])[1]")).click();
+		Thread.sleep(3000);
+		act.moveToElement(driver.findElement(By.xpath("(//*[text()='proc_automation'])[2]")));
+		act.build().perform();
+		Thread.sleep(2000);
+		act.moveToElement(driver.findElement(By.xpath("(//*[text()='proc_automation'])[2]/following::button[2]")));
+		act.build().perform();
+		driver.findElement(By.xpath("(//*[text()='proc_automation'])[2]/following::button[2]")).click();
+		Thread.sleep(3000);
+		m.takePageScreenshot_onPass(driver, "procurement automation delete viw");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//button[text()='Yes']")).click();
+		Thread.sleep(5000);
+		driver.close();
 		
+//		
 	}
 	public void procurechangedate_markcomplete() throws InterruptedException
 	{
@@ -297,6 +339,8 @@ public class ProcurementPO extends LandingPage{
 				//p[text()='Workflow Activities']/following::textarea[@id='mentions_input']
 				//span[starts-with(@class, 'workflowSettings')]
 				//input[@type='file']
+				Thread.sleep(2000);
+				driver.close();
 	}
 
 }

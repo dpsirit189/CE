@@ -20,6 +20,7 @@ import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 public class DocumentPO extends LandingPage{
 	String destination=System.getProperty("user.dir")+"/documentuploads/2023 - HOMEVIEW TECHNOLOGIES.pdf";
 	String invoicefile=System.getProperty("user.dir")+"/documentuploads/ARInvoice INV INV207379.pdf";
+	String invoicefile2=System.getProperty("user.dir")+"/documentuploads/2023-2025 LVT - Sendoso Order Form-MSA.pdf";
 	public DocumentPO() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -31,6 +32,28 @@ public class DocumentPO extends LandingPage{
 		Thread.sleep(3000);	
 		driver.findElement(By.xpath("//label[text()='Documents']")).click();
 		Thread.sleep(5000);	
+	}
+	public void verifyactivecontract() throws InterruptedException
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(22));
+		 Actions act=new Actions(driver);
+			//Thread.sleep(11000);	
+		
+		 wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@placeholder='Search Contract']"))));
+		 Thread.sleep(2000);	
+		String totalcontract= driver.findElement(By.xpath("//input[@placeholder='Search Contract']/following::p[2]")).getText().toString();
+			m.takePageScreenshot_onPass(driver,"pic1"+totalcontract);
+			ExtentCucumberAdapter.addTestStepLog(" total contracts "+totalcontract);
+			Thread.sleep(2000);	
+			
+			driver.findElement(By.xpath("//*[text()='Active Contracts']")).click();
+			Thread.sleep(3000);	
+			String activecontract= driver.findElement(By.xpath("//input[@placeholder='Search Contract']/following::p[2]")).getText().toString();
+			
+			ExtentCucumberAdapter.addTestStepLog(" total contracts "+activecontract);
+			m.takePageScreenshot_onPass(driver,"pic2"+totalcontract);
+			Thread.sleep(5000);	
+			driver.close();
 	}
 	public void upload_doc_manual(String doctype) throws InterruptedException
 	{
@@ -53,9 +76,14 @@ public class DocumentPO extends LandingPage{
 			Thread.sleep(2000);	
 			driver.findElement(By.xpath("(//input[@type='search'])[1]")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
 			Thread.sleep(2000);
-					driver.findElement(By.xpath("(//input[@type='search'])[1]")).sendKeys("test vendor"+Keys.ENTER);
+					driver.findElement(By.xpath("(//input[@type='search'])[1]")).sendKeys("test vendor");
 					Thread.sleep(3000);	
-					driver.findElement(By.xpath("//input[@name='renewalDate']")).sendKeys("30/09/25");
+					act.sendKeys(Keys.ARROW_DOWN);
+					act.build().perform();
+					act.sendKeys(Keys.ENTER);
+					act.build().perform();
+					Thread.sleep(1000);	
+					driver.findElement(By.xpath("//input[@name='renewalDate']")).sendKeys("09-30-25 "+Keys.ENTER);
 					Thread.sleep(1000);	
 					driver.findElement(By.xpath("//input[@name='sourceContractValue']")).sendKeys("4000");
 					Thread.sleep(1000);
@@ -77,10 +105,14 @@ public class DocumentPO extends LandingPage{
 					Thread.sleep(1000);
 				//	driver.findElement(By.xpath("(//input[@name='description'])[1]/following::input[1]")).sendKeys("all"+Keys.ARROW_DOWN+Keys.ENTER);
 					
-							act.sendKeys(driver.findElement(By.xpath("(//input[@name='description'])[1]/following::input[1]")),"All");
+							//act.sendKeys(driver.findElement(By.xpath("(//input[@name='description'])[1]/following::input[1]")),"");
+					act.sendKeys(Keys.ENTER);
+					act.build().perform();
+					Thread.sleep(2000);
 							act.build().perform();
 							act.sendKeys(Keys.ARROW_DOWN);
 							act.build().perform();
+							Thread.sleep(2000);
 							act.sendKeys(Keys.ENTER);
 							act.build().perform();
 							
@@ -186,10 +218,10 @@ public class DocumentPO extends LandingPage{
 					Thread.sleep(1000);	
 					driver.findElement(By.xpath("//button[text()='Cancel']")).click();
 					Thread.sleep(2000);	
-					driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("alliant");
+					driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("test vendor");
 					Thread.sleep(1000);
 					
-							act.click(driver.findElement(By.xpath("(//span[text()=' ALLIANT INSURANCE SERVICES, INC.'])[1]")));
+							act.click(driver.findElement(By.xpath("(//span[text()='TEST Vendor Demo - TestUpdate'])[1]")));
 							act.build().perform();
 							Thread.sleep(1000);
 							for(int j=1;j<30;j++)
@@ -211,7 +243,7 @@ public class DocumentPO extends LandingPage{
 				 driver.findElement(By.xpath("(//*[contains(text(),'Unpublished Docs')])[1]")).click();
 					Thread.sleep(7000);	
 			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
-			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("alliant");
+			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("test vendor");
 			Thread.sleep(1000);
 			//Thread.sleep(11000);	
 		 driver.findElement(By.xpath("(//span[text()='2023 - HOMEVIEW TECHNOLOGIES.pdf'])[1]")).click();
@@ -253,7 +285,7 @@ public class DocumentPO extends LandingPage{
 				 driver.findElement(By.xpath("(//*[contains(text(),'Unpublished Docs')])[1]")).click();
 					Thread.sleep(7000);	
 			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
-			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("alliant");
+			driver.findElement(By.xpath("//input[@placeholder='Search Unpublished Documents']")).sendKeys("test vendor");
 			Thread.sleep(1000);
 			//Thread.sleep(11000);	
 		 driver.findElement(By.xpath("(//span[text()='2023 - HOMEVIEW TECHNOLOGIES.pdf'])[1]")).click();
@@ -276,7 +308,7 @@ public class DocumentPO extends LandingPage{
 		
 				driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();
 				Thread.sleep(2000);	
-		driver.findElement(By.xpath("//input[@type='file']")).sendKeys(invoicefile);
+		driver.findElement(By.xpath("//input[@type='file']")).sendKeys(invoicefile2);
 		Thread.sleep(12000);	
 		 wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//button[text()='Cancel']"))));
 			//driver.findElement(By.xpath("//button[text()='Cancel']")).click();
@@ -384,8 +416,15 @@ public class DocumentPO extends LandingPage{
 	{
 		Thread.sleep(3000);	
 		driver.findElement(By.xpath("//*[text()='Publish']")).click();
-		Thread.sleep(2000);	
+		Thread.sleep(3000);	
 		m.takePageScreenshot_onPass(driver, "publish invoice pic1");
+		try {
+			driver.findElement(By.xpath("//button[text()='Confirm']")).click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
+		Thread.sleep(1000);	
 		try {
 			driver.findElement(By.xpath("//button[text()='Publish']")).click();
 		} catch (Exception e) {
@@ -394,28 +433,45 @@ public class DocumentPO extends LandingPage{
 		}
 		Thread.sleep(4000);	
 		m.takePageScreenshot_onPass(driver, "publish invoice pic1");
+		driver.navigate().refresh();
 	}
 	public void editpublish_invoice() throws InterruptedException
 	{
 		
 				Thread.sleep(4000);	
 				 Actions act=new Actions(driver);
+				 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+				 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[text()='Invoices'])[1]")));
 				driver.findElement(By.xpath("(//*[text()='Invoices'])[1]")).click();
-				Thread.sleep(9000);	
+				
+				//	driver.navigate().to("https://somecorp-charlie.cloudeagle.us/app/documents/invoices");
+				Thread.sleep(10000);	
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search Invoice']")));
 				driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
-				driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("inv207");
-				Thread.sleep(3000);
+			//	driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("inv207");
+				if(uploadedfile.equals("sendoso"))
+				{
+					System.out.println("file is sendoso");
+				driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("Sendoso Order");
+				}
+				else
+				{
+					System.out.println("file is inv");
+					driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("inv207");
+					
+				}
+				Thread.sleep(9000);
 				
 				driver.findElement(By.xpath("//h7[text()='Line Item View']/preceding::button[1]")).click();
 				Thread.sleep(9000);	
-				driver.findElement(By.xpath("(//span[text()='Vantage Software'])[1]/following::button[1]")).click();
+				driver.findElement(By.xpath("(//span[contains(text(),'Sendoso')])[1]/following::button[1]")).click();
 				Thread.sleep(2000);	
 				
-				act.click(driver.findElement(By.xpath("(//span[text()='Vantage Software'])[1]")));
-				act.build().perform();
+//				act.click(driver.findElement(By.xpath("(//span[text()='Vantage Software'])[1]")));
+//				act.build().perform();
 				Thread.sleep(1000);
 				
-						driver.findElement(By.xpath("(//span[text()='Vantage Software'])[1]/following::input[2]")).sendKeys(" edited desc");
+						driver.findElement(By.xpath("(//span[contains(text(),'Sendoso')])[1]/following::input[2]")).sendKeys(" edited desc");
 						Thread.sleep(1000);
 						act.sendKeys(Keys.TAB);
 						act.build().perform();
@@ -441,10 +497,18 @@ public class DocumentPO extends LandingPage{
 		driver.findElement(By.xpath("(//*[text()='Invoices'])[1]")).click();
 		Thread.sleep(9000);	
 		driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
-		driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("inv207");
-		Thread.sleep(5000);
 		
-				driver.findElement(By.xpath("(//span[text()='ARInvoice INV INV207379.pdf'])[1]")).click();
+	if(uploadedfile.equals("sendoso"))
+	{
+		driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("Sendoso Order");
+		Thread.sleep(5000);
+				driver.findElement(By.xpath("(//span[text()='2023-2025 LVT - Sendoso Order Form-MSA.pdf'])[1]")).click();
+	}
+	else
+	{driver.findElement(By.xpath("//input[@placeholder='Search Invoice']")).sendKeys("INV207");
+	Thread.sleep(5000);
+		driver.findElement(By.xpath("(//span[text()='ARInvoice INV INV207379'])[1]")).click();
+	}
 				Thread.sleep(9000);
 		driver.findElement(By.xpath("//button[text()='Extract Data']")).click();
 		Thread.sleep(2000);
@@ -454,8 +518,8 @@ public class DocumentPO extends LandingPage{
 		Thread.sleep(1000);
 		act.sendKeys(Keys.ENTER);
 		act.build().perform();
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'AI Extraction')]")));
+		Thread.sleep(12000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'AI Extraction Done')]")));
 		Thread.sleep(1000);
 		m.takePageScreenshot_onPass(driver, "extract started pic2");
 		Thread.sleep(1000);
@@ -477,13 +541,64 @@ public class DocumentPO extends LandingPage{
 		ExtentCucumberAdapter.addTestStepLog("vendor dueDate "+dueDate);
 		ExtentCucumberAdapter.addTestStepLog("vendor sourceTotalAmount "+sourceTotalAmount);
 		ExtentCucumberAdapter.addTestStepLog("vendor desc "+description);
+		if(uploadedfile.equals("sendoso"))
+		{
+			Thread.sleep(1000);
+			String l1license=driver.findElement(By.xpath("(//*[@name='licensedBought'])[1]")).getAttribute("value");
+			String l1unitprice=driver.findElement(By.xpath("(//*[@name='sourceUnitPrice'])[1]")).getAttribute("value");
+			String l1discount=driver.findElement(By.xpath("(//*[@name='discount'])[1]")).getAttribute("value");
+			String l1total=driver.findElement(By.xpath("(//*[@name='amount'])[1]")).getAttribute("value");
+			assertEquals("1", l1license);
+			assertEquals("40000", l1unitprice);
+			assertEquals("48", l1discount);
+			assertEquals("20798.75", l1total);
+			//line2
+			String l2license=driver.findElement(By.xpath("(//*[@name='licensedBought'])[2]")).getAttribute("value");
+			String l2unitprice=driver.findElement(By.xpath("(//*[@name='sourceUnitPrice'])[2]")).getAttribute("value");
+			String l2discount=driver.findElement(By.xpath("(//*[@name='discount'])[2]")).getAttribute("value");
+			String l2total=driver.findElement(By.xpath("(//*[@name='amount'])[2]")).getAttribute("value");
+			assertEquals("40", l2license);
+			assertEquals("27840", l2unitprice);
+			assertEquals("31.03", l2discount);
+			assertEquals("19201.25", l2total);
+			
+			driver.findElement(By.xpath("//h7[text()='Vendor Name']/following::input[1]")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
+			driver.findElement(By.xpath("//h7[text()='Vendor Name']/following::input[1]")).sendKeys("sendoso");
+			
+			Thread.sleep(2000);
+			act.sendKeys(Keys.ENTER);
+			act.build().perform();
+			Thread.sleep(2000);
+			try {
+				driver.findElement(By.xpath("//button[text()='Confirm']")).click();
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				
+			}
+			driver.findElement(By.xpath("(//input[@name='description'])[1]/following::span[1]")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("(//input[@name='description'])[1]/following::input[@type='search'][1]")).sendKeys("sendoso");
+			
+			Thread.sleep(2000);
+			act.sendKeys(Keys.ENTER);
+			act.build().perform();
+			Thread.sleep(2000);
+			try {
+				driver.findElement(By.xpath("//button[text()='Confirm']")).click();
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				
+			}
+		}
+		else {
 		assertTrue("city", vcity.equals("South Jordan"));
 		assertTrue("invoiceDate", invoiceDate.equals("01/12/22"));
 		assertTrue("invoiceNumber", invoiceNumber.equals("INV207379"));
 		assertTrue("sourceTotalAmount", sourceTotalAmount.equals("56103.39"));
-		
+		}
 		act.click(driver.findElement(By.xpath("(//*[@name='description'])[2]")));
 		act.build().perform();
+		Thread.sleep(1000);
 		for(int x=1;x<=10;x++)
 		{
 			act.sendKeys(Keys.TAB);
@@ -492,14 +607,24 @@ public class DocumentPO extends LandingPage{
 		}
 		String l1tot=driver.findElement(By.xpath("(//input[@name='amount'])[1]")).getAttribute("value").toString();
 		String l2tot=driver.findElement(By.xpath("(//input[@name='amount'])[2]")).getAttribute("value").toString();
-		String l3tot=driver.findElement(By.xpath("(//input[@name='amount'])[3]")).getAttribute("value").toString();
+		//String l3tot=driver.findElement(By.xpath("(//input[@name='amount'])[3]")).getAttribute("value").toString();
 		double l1=Double.parseDouble(l1tot);
 		double l2=Double.parseDouble(l2tot);
-		double l3=Double.parseDouble(l3tot);
+	//	double l3=Double.parseDouble(l3tot);
 		double total=l1+l2;
 		ExtentCucumberAdapter.addTestStepLog("expected total "+total);
+		Thread.sleep(1000);
+				driver.findElement(By.xpath("(//input[@name='licensedBought'])[1]")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
+				driver.findElement(By.xpath("(//input[@name='licensedBought'])[1]")).sendKeys("5");
+				 Thread.sleep(1000);
+				driver.findElement(By.xpath("(//input[@name='sourceUnitPrice'])[1]")).sendKeys(Keys.CONTROL+"a"+Keys.BACK_SPACE);
+				driver.findElement(By.xpath("(//input[@name='sourceUnitPrice'])[1]")).sendKeys("120");
+				Thread.sleep(1000);
+				
+				driver.findElement(By.xpath("//*[text()='Publish']")).click();
+				Thread.sleep(1000);
 		//assertTrue("dueDate", dueDate.equals("01/12/22"));
-		driver.close();
+		//driver.close();
 		 
 		
 	}

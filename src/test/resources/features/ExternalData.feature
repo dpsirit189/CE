@@ -12,15 +12,15 @@ Feature: External Data
 #|vendor name  	|
 #|"Nudge Experience LLC" |
 
-#Scenario: External Data Vender Detected Confirm under All vendor and Revert
-#Given user is Login page prior to confirming vendor
-#When user navigate to External Data Vender Detected and New Vendor
-#Then user confirm all vendors and revert
+Scenario: External Data Vender Detected Confirm under All vendor and Revert
+Given user is Login page prior to confirming vendor
+When user navigate to External Data Vender Detected and New Vendor
+Then user confirm all vendors and revert
 
-#Scenario: External Data Vender Detected Reject under All vendor and Revert
-#Given user is Login page prior to confirming vendor
-#When user navigate to External Data Vender Detected and New Vendor
-#Then user reject all vendors and revert
+Scenario: External Data Vender Detected Reject under All vendor and Revert
+Given user is Login page prior to confirming vendor
+When user navigate to External Data Vender Detected and New Vendor
+Then user reject all vendors and revert
 
 Scenario: External Data Vender Detected Confirm multiple vendor and Revert
 Given user is Login page prior to confirming vendor
@@ -66,3 +66,11 @@ Scenario: External Data Vender Detected Confirm under All apps and Revert
 Given user is Login page prior to confirming vendor
 When user navigate to External Data Application Detected and New Application
 Then user confirm all apps and revert
+
+#Scenario: Excel data upload
+#Given user is Login page prior to confirming vendor
+#Then user navigate to excel upload
+#Then verify transactions download and upload
+#Then verify vendormetadata download and upload
+#Then verify appmetadata download and upload
+#Then verify usermetadata download and upload

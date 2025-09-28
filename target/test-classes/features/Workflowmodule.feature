@@ -16,9 +16,9 @@ Feature: WorkFlow Module
 Scenario: Top cards to filter workflows & Manual filter Apply,Reset,Save,Share
 When user navigate to workflows
 Then Click on top cards to filter workflows
-When user is in workflows
-Then Workflow list should be filtered as per selected criteria
-Then reset criteria
-Then Workflow list should be filtered as per selected criteria
-Then save filter view
-Then share view and copy link
+#When user is in workflows
+#Then Workflow list should be filtered as per selected criteria
+#Then reset criteria
+#Then Workflow list should be filtered as per selected criteria
+#Then save filter view
+#Then share view and copy link

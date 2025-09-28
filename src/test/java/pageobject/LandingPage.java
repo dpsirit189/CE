@@ -36,7 +36,7 @@ public class LandingPage {
 	String password="";
 	Properties props;
 	String workflow="";
-	String procurement_req="dspproc_req10";  // change this
+	String procurement_req="";  // change this
 	String Expectedurllogin="https://somecorp.cloudeagle.us/app/signin";
 	String zoomuser="";
 	String zoompass="";
@@ -45,6 +45,7 @@ public class LandingPage {
 	String allvenname="";
 	String confirm_mult_ven="";
 	String multiapp="";
+	String uploadedfile="";
 	//String Expectedurldashboard="https://somecorp.cloudeagle.us/app/dashboard";
 	public LandingPage() throws IOException
 	{
@@ -60,6 +61,9 @@ public class LandingPage {
 		allvenname=props.getProperty("allvendorname");
 		confirm_mult_ven=props.getProperty("confirmmultiple_vendor");
 		multiapp=props.getProperty("confirmmultiplapp");
+		uploadedfile=props.getProperty("invoicefileupload");
+		
+		procurement_req=props.getProperty("procurementreq");
 		if(browser_run.equals("chrome"))
 		{
 			System.setProperty("webdriver.chrome.driver", "./Browsers/chromedriver.exe"); //where chromedriver exists(path)

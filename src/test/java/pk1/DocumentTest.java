@@ -69,9 +69,15 @@ public void useruploadinvoicedocpublish() throws Throwable
 }
 
 @Then("extract document data and verify") 
-public void extractdataverifu() throws Throwable 
+public void extractdataverify() throws Throwable 
 {
 	extractdata();
+	
+}
+@Then("verify Active contracts") 
+public void verifycontracts() throws Throwable 
+{
+	verifyactivecontract();
 	
 }
 

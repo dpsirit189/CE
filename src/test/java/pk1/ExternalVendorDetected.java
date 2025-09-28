@@ -40,8 +40,29 @@ public ExternalVendorDetected() throws IOException {
 		navigatetoexternal_vendor();
 		 
 	}
-
 	
+	@Then("user navigate to excel upload") 
+	public void navigatetoexceluploaddownload() throws Throwable 
+	{
+		System.out.println("navigate to excel"); 
+		navigatetoexternal_exceldata();
+		 
+	}
+	
+	@Then("verify transactions download and upload") 
+	public void verifytransactexcel() throws Throwable 
+	{
+		System.out.println("navigate to transaction upload download"); 
+	transactionupload_download();
+		 
+	}
+	@Then("verify vendormetadata download and upload") 
+	public void verifyvendormetadataexcel() throws Throwable 
+	{
+		System.out.println("navigate to vendormetadata excel"); 
+		vendormetadata();
+		 
+	}
 	
 	@Then("user confirm new vendor {string}")
 	public void confirmvendor(String vendor) throws InterruptedException

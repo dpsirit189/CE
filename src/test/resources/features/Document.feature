@@ -2,16 +2,20 @@
 
 
 Feature: Document Module
+#Scenario: verify Active contracts 
+#Given user is on cloudeagle Login page and want to upload document
+#Then user navigate to document module
+#Then verify Active contracts
  
-#Scenario: Upload contract document save and verify line totals
-#Given user is on cloudeagle Login page and want to upload document
-#Then user navigate to document module
-#Then user upload document save and verify line totals
-#
-#Scenario: document edit line
-#Given user is on cloudeagle Login page and want to upload document
-#Then user navigate to document module
-#Then user edit line and verify line totals
+Scenario: Upload contract document save and verify line totals
+Given user is on cloudeagle Login page and want to upload document
+Then user navigate to document module
+Then user upload document save and verify line totals
+
+Scenario: document edit line
+Given user is on cloudeagle Login page and want to upload document
+Then user navigate to document module
+Then user edit line and verify line totals
 
 Scenario: Upload invoice document publish,verify line  and edit 
 Given user is on cloudeagle Login page and want to upload document

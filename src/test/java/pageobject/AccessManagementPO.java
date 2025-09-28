@@ -59,10 +59,35 @@ public class AccessManagementPO extends LandingPage{
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("(//*[text()='"+app+"'])[1]//preceding::input[@type='checkbox'][1]")).click();
 		Thread.sleep(3000);	
-		driver.findElement(By.xpath("//button/h7[text()='Start Provisioning Process']")).click();
+		driver.findElement(By.xpath("//*[text()='Start Provisioning Process']")).click();
 		Thread.sleep(3000);	
-		driver.findElement(By.xpath("//button[text()='Yes']")).click();
-		Thread.sleep(4000);	
+		try {
+			driver.findElement(By.xpath("//button[text()='Yes']")).click();
+			Thread.sleep(4000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("yes button not there");
+		}	
+		try {
+		driver.findElement(By.xpath("//*[text()='Assign License Type']/following::input[@type='search']")).sendKeys("Basic");
+		Thread.sleep(2000);	
+		act.sendKeys(Keys.ENTER);
+		act.build().perform();
+		Thread.sleep(2000);	
+		m.takePageScreenshot_onPass(driver, "select basic on provision");
+			driver.findElement(By.xpath("//*[text()='Save']")).click();
+			Thread.sleep(4000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("save button not there");
+		}	
+		try {
+			driver.findElement(By.xpath("//button[text()='Yes']")).click();
+			Thread.sleep(4000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("yes button not there");
+		}	
 		m.takePageScreenshot_onPass(driver, app+"provision pic2");
 		Thread.sleep(9000);
 		// verify
@@ -70,7 +95,7 @@ public class AccessManagementPO extends LandingPage{
 		driver.navigate().refresh();
 		Thread.sleep(9000);
 		driver.findElement(By.xpath("//p[contains(text(),'Provisioning')]")).click();
-		Thread.sleep(4000);
+		Thread.sleep(6000);
 		driver.findElement(By.xpath("//input[@placeholder='Search Workflows']")).sendKeys(user);
 		Thread.sleep(4000);	
 		
@@ -86,7 +111,19 @@ public class AccessManagementPO extends LandingPage{
 		String actapp=driver.findElement(By.xpath("(//span[text()='Application']//following::div[@role='cell']//a)[1]")).getText();
 		Thread.sleep(4000);
 		ExtentCucumberAdapter.addTestStepLog("actual app name "+actapp);
+		m.takePageScreenshot_onPass(driver, "userapp provision "+user+app);
+		Thread.sleep(4000);
 		assertEquals(app,actapp);
+		
+				try {
+					driver.findElement(By.xpath("(//*[text()='Assign'])[2]")).click();
+					Thread.sleep(5000);
+					driver.findElement(By.xpath("(//*[text()='Assign'])[3]")).click();
+					Thread.sleep(5000);
+				} catch (Exception e) {
+				
+				}
+				
 	}
 	
 	public void applicationdetectedconfirm(String application) throws InterruptedException

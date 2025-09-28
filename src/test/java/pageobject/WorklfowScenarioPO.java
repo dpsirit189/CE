@@ -94,7 +94,7 @@ public class WorklfowScenarioPO extends LandingPage{
 		driver.findElement(By.xpath("//p[text()='Contract Renewal']")).click();
 		Thread.sleep(5000);
 		//get text 
-		String st1=driver.findElement(By.xpath("(//p[contains(text(),'Total Workflows')])[1]")).getText();
+		String st1=driver.findElement(By.xpath("//p[text()='Contract Renewal']/following::p[1]")).getText();
 		System.out.println(st1.substring(0, 2));
 		
 		m.takePageScreenshot_onPass(driver, "Contract Renewal count");
@@ -103,12 +103,13 @@ public class WorklfowScenarioPO extends LandingPage{
 		String st2=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[3]/p/div/span")).getText();
 		ExtentCucumberAdapter.addTestStepLog(st1.substring(0, 2));
 		ExtentCucumberAdapter.addTestStepLog(st2.substring(0, 2));
-		//assertEquals(st2.substring(0, 2),st1.substring(0, 2)); nee to chanfe to out of
+		
+		assertEquals(st2.substring(0, 2),st1.substring(0, 2)); 
 		//procurement
 		driver.findElement(By.xpath("//p[text()='Procurement']")).click();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("(//p[contains(text(),'Total Workflows')])[2]")));
 		//get text 
-		String st3=driver.findElement(By.xpath("(//p[contains(text(),'Total Workflows')])[2]")).getText();
+		String st3=driver.findElement(By.xpath("//p[text()='Procurement']/following::p[1]")).getText();
 		
 		m.takePageScreenshot_onPass(driver, "Procurement count");
 		Thread.sleep(2000);
@@ -117,7 +118,7 @@ public class WorklfowScenarioPO extends LandingPage{
 		ExtentCucumberAdapter.addTestStepLog(st3.substring(0, 2));
 		ExtentCucumberAdapter.addTestStepLog(st4.substring(0, 2));
 		
-		//assertEquals(st4.substring(0, 2),st3.substring(0, 2));
+		assertEquals(st4.substring(0, 2),st3.substring(0, 2));
 		//app access
 		driver.findElement(By.xpath("//p[text()='Application Access']")).click();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//p[text()='Application Access']/following::p[1]")));
@@ -135,7 +136,7 @@ public class WorklfowScenarioPO extends LandingPage{
 		//System.out.println(st6.substring(0, 2));
 		ExtentCucumberAdapter.addTestStepLog(st5);
 		ExtentCucumberAdapter.addTestStepLog(st6);
-		//assertEquals(st6,st5);
+		assertEquals(st6,st5);
 		//prov
 		driver.findElement(By.xpath("//p[text()='Provisioning / Deprovisioning']")).click();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//p[text()='Provisioning / Deprovisioning']/following::p[1]")));
@@ -334,21 +335,59 @@ ExtentCucumberAdapter.addTestStepLog(rowsafterfilter);
 		
 		Actions act=new Actions(driver);
 		ExtentCucumberAdapter.addTestStepLog("share view");
-		Thread.sleep(2000);
+		Thread.sleep(5000);
+		act.moveToElement(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[1]/div[4]")));
+	act.build().perform();
+	Thread.sleep(1000);
 		driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[1]/div[4]/span")).click();
+		Thread.sleep(1000);
+		//driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[1]/div[4]/span")).click();
+		Thread.sleep(5000);
+//		driver.findElement(By.xpath("//*[@id=\"workflowList3Body\"]/div[1]/div[1]/div[1]/div[4]/span")).click();
+//		Thread.sleep(5000);
 		try {
-			act.click(driver.findElement(By.xpath("//html/body/div[1]/div/div[1]/div/div/div[2]/div[3]/div[4]/div[1]/div[1]/div[1]/div[1]/div[4]/span")));
-			act.build().perform();
+		//	act.click(driver.findElement(By.cssSelector("div:nth-child(1) > div.styles_shareIcon__2wVJs > span > svg")));
+			//act.build().perform();
 			Thread.sleep(2000);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			
+
 		}
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[contains(text(),'https')]/following::button[1]")).click();
 		Thread.sleep(2000);
 		m.takePageScreenshot_onPass(driver, "share view");
+		deleteworkview();
+	}
+	public void deleteworkview() throws InterruptedException
+	{
+		Actions act=new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[text()='All'])[1]")));
+		driver.findElement(By.xpath("(//div[text()='All'])[1]")).click();
+		Thread.sleep(3000);
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		act.sendKeys(Keys.ARROW_DOWN);
+		act.build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[text()='automation view'])[1]")));
+		driver.findElement(By.xpath("(//*[text()='automation view'])[1]")).click();
+		Thread.sleep(3000);
+		act.moveToElement(driver.findElement(By.xpath("(//*[text()='automation view'])[2]")));
+		act.build().perform();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("(//*[text()='automation view'])[2]/following::button[2]")).click();
+		Thread.sleep(2000);
+		m.takePageScreenshot_onPass(driver, "delete workflow automation view");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//button[text()='Yes']")).click();
+		Thread.sleep(5000);
+		driver.close();
 		
+//		
 	}
 	public void wfhangedate_markcomplete() throws InterruptedException
 	{

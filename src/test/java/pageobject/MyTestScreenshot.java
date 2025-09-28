@@ -20,7 +20,7 @@ public class MyTestScreenshot {
 		System.setProperty("webdriver.chrome.driver","./Browsers/chromedriver.exe");
 		TakesScreenshot ts=(TakesScreenshot)w;
 		File source=ts.getScreenshotAs(OutputType.FILE);
-		String destination=System.getProperty("user.dir")+"/Test case screenshots/"+tc+".png";
+		String destination=System.getProperty("user.dir")+"/target/sparkreport/"+tc+".png";
 		
 		//String destination="file:///C:/java%20project/Sel_Jenkins_proj1/Test case screenshots/"+tc+".png";
 	File finaldestination=new File(destination);

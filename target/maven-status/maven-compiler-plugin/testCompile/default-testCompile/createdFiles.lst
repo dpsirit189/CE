@@ -1,2 +1,17 @@
+pk1\AccessMgmtTest.class
 pk1\Demotest.class
+pageobject\LandingPage.class
+pageobject\WorklfowScenarioPO.class
+pageobject\MyTestScreenshot.class
+pageobject\ProcurementPO.class
+pk1\WorkflowTests.class
+pageobject\AdminTabIntegrationPO.class
+pk1\LoginPageTest.class
+pageobject\DocumentPO.class
 pk1\TestRunner.class
+pageobject\ExternalData.class
+pageobject\AccessManagementPO.class
+pk1\ProcurementTest.class
+pk1\AdminTABIntegrationTest.class
+pk1\DocumentTest.class
+pk1\ExternalVendorDetected.class

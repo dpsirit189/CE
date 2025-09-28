@@ -9,4 +9,4 @@ When navigate to Access Mgmt active user and search user
 Then provision <user><app> and start provisioning process
 Examples:
 |user   	|app  	|
-|"sanjeev"|"Zoom Webinars"|
+|"Dinesh M"|"Zoom"|
